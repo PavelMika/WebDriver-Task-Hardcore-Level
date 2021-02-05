@@ -17,35 +17,35 @@ public class CalculatorPage extends BasePage {
 
     private By devSiteSearch = By.className("devsite-search-form");
     private By googleSearch = By.xpath("//input[@class='devsite-search-field devsite-search-query']");
-    private By goToCalculator = By.xpath("//b[text()='Google Cloud Platform Pricing Calculator']/parent::a");
-    private By goToNewFirstFrame = By.xpath("//iframe[contains(@name,'goog_')]");
-    private By pickInstancesField =
+    private By switchToCalculator = By.xpath("//b[text()='Google Cloud Platform Pricing Calculator']/parent::a");
+    private By newFirstFrame = By.xpath("//iframe[contains(@name,'goog_')]");
+    private By instancesField =
             By.xpath("//md-input-container/child::input[@ng-model='listingCtrl.computeServer.quantity']");
-    private By pickSeriesOfMachine = By.xpath("//md-select[@name='series']/parent::md-input-container");
-    private By clickSeriesOfMachine = By.xpath("//md-option[@value='n1']");
-    private By pickMachineType = By.xpath("//label[text()='Machine type']/parent::md-input-container");
-    private By pickComputeEngine = By.xpath("//md-option[@value='CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8']");
-    private By pickAddGpusCheckBox = By.xpath("//md-checkbox[@aria-label='Add GPUs']");
-    private  By pickNumberOfGpus = By.xpath("//md-select[@placeholder='Number of GPUs']");
-    private By clickNumberOfGpus = By.cssSelector("md-option[value='1'][class='ng-scope md-ink-ripple'][ng-disabled]");
-    private By pickGpuType = By.xpath("//md-select[@placeholder='GPU type']");
-    private By pickNvidea = By.xpath("//md-option[@value='NVIDIA_TESLA_V100']");
-    private By pickLocalSsd = By.xpath("//md-select[@placeholder='Local SSD']");
-    private By pickModelLocalSsd = By.cssSelector("md-option[value='2'][ng-repeat*='supportedSsd']");
-    private By pickDataCenterLocation = By.xpath("//md-select[@placeholder='Datacenter location']");
-    private By pickDataCenterLocationInFrankfurt = By.cssSelector("md-select-menu[class='md-overflow']" +
+    private By seriesOfMachine = By.xpath("//md-select[@name='series']/parent::md-input-container");
+    private By seriesOfMachineModel = By.xpath("//md-option[@value='n1']");
+    private By machineType = By.xpath("//label[text()='Machine type']/parent::md-input-container");
+    private By computeEngine = By.xpath("//md-option[@value='CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8']");
+    private By gpusCheckBox = By.xpath("//md-checkbox[@aria-label='Add GPUs']");
+    private By numberOfGpus = By.xpath("//md-select[@placeholder='Number of GPUs']");
+    private By numberOfGpusModel = By.cssSelector("md-option[value='1'][class='ng-scope md-ink-ripple'][ng-disabled]");
+    private By gpuType = By.xpath("//md-select[@placeholder='GPU type']");
+    private By gpuTypeModel = By.xpath("//md-option[@value='NVIDIA_TESLA_V100']");
+    private By localSsd = By.xpath("//md-select[@placeholder='Local SSD']");
+    private By localSsdModel = By.cssSelector("md-option[value='2'][ng-repeat*='supportedSsd']");
+    private By dataCenterLocation = By.xpath("//md-select[@placeholder='Datacenter location']");
+    private By dataCenterLocationInFrankfurt = By.cssSelector("md-select-menu[class='md-overflow']" +
             " md-option[value='europe-west3'][ng-repeat*='fullRegionList']");
-    private By pickCommittedUsage = By.xpath("//md-select[@placeholder='Committed usage']");
-    private By pickOneYearUsage = By.cssSelector("div[class='md-select-menu-container md-active md-clickable']" +
+    private By committedUsage = By.xpath("//md-select[@placeholder='Committed usage']");
+    private By oneYearUsage = By.cssSelector("div[class='md-select-menu-container md-active md-clickable']" +
             " md-option[value='1'][class='md-ink-ripple']");
-    private By pushAddToEstimateButton = By.xpath("//button[@aria-label='Add to Estimate']");
-    private By copyAddress = By.xpath("//div[@id='copy_address']");
-    private By getTextFromCalculator = By.cssSelector("div>b[class=ng-binding]");
-    private By pushEmailEstimate = By.id("email_quote");
-    private By inputEmail = By.cssSelector("input[name = description][type=email]");
-    private By sendEmail = By.cssSelector("button[type=button][aria-label='Send Email']");
-    private By pushButtonMail = By.xpath("//div[@class='mail_message']");
-    private By getTextFromMail = By.xpath("//td/h3[contains(text(),'USD')]");
+    private By addToEstimateButton = By.xpath("//button[@aria-label='Add to Estimate']");
+    private By addressOfMail = By.xpath("//div[@id='copy_address']");
+    private By costFromCalculator = By.cssSelector("div>b[class=ng-binding]");
+    private By emailEstimate = By.id("email_quote");
+    private By email = By.cssSelector("input[name = description][type=email]");
+    private By emailSendingButton = By.cssSelector("button[type=button][aria-label='Send Email']");
+    private By buttonMailPushing = By.xpath("//div[@class='mail_message']");
+    private By costFromMail = By.xpath("//td/h3[contains(text(),'USD')]");
 
 
     public void openCloudPage(){
@@ -58,58 +58,58 @@ public class CalculatorPage extends BasePage {
         textForGoogleSearch.click();
         textForGoogleSearch.sendKeys(keyForCalculatorPageOpening);
         textForGoogleSearch.sendKeys(Keys.ENTER);
-        driver.findElement(goToCalculator).click();
+        driver.findElement(switchToCalculator).click();
     }
 
     public void sendKeyInToNumberOfInstancesField(String keyForNumberOfInstances) {
-        WebElement element = driver.findElement(goToNewFirstFrame);
+        WebElement element = driver.findElement(newFirstFrame);
         driver.switchTo().frame(element);
         driver.switchTo().frame("myFrame");
-        WebElement numberOfInstancesField = driver.findElement(pickInstancesField);
+        WebElement numberOfInstancesField = driver.findElement(instancesField);
         numberOfInstancesField.sendKeys(keyForNumberOfInstances);
     }
 
     public void selectSeriesOfMachine() {
-        driver.findElement(pickSeriesOfMachine).click();
-        driver.findElement(clickSeriesOfMachine).click();
+        driver.findElement(seriesOfMachine).click();
+        driver.findElement(seriesOfMachineModel).click();
     }
 
     public void selectMachineType() {
-        driver.findElement(pickMachineType).click();
-        driver.findElement(pickComputeEngine).click();
+        driver.findElement(machineType).click();
+        driver.findElement(computeEngine).click();
     }
 
     public void clickAddGpusCheckBox() {
-        driver.findElement(pickAddGpusCheckBox).click();
+        driver.findElement(gpusCheckBox).click();
     }
 
     public void selectNumberOfGpus() {
-        driver.findElement(pickNumberOfGpus).click();
-        driver.findElement(clickNumberOfGpus).click();
+        driver.findElement(numberOfGpus).click();
+        driver.findElement(numberOfGpusModel).click();
     }
 
     public void selectGpuType() {
-        driver.findElement(pickGpuType).click();
-        driver.findElement(pickNvidea).click();
+        driver.findElement(gpuType).click();
+        driver.findElement(gpuTypeModel).click();
     }
 
     public void selectLocalSsd() {
-        driver.findElement(pickLocalSsd).click();
-        driver.findElement(pickModelLocalSsd).click();
+        driver.findElement(localSsd).click();
+        driver.findElement(localSsdModel).click();
     }
 
     public void selectDataCenterLocation() {
-        driver.findElement(pickDataCenterLocation).click();
-        driver.findElement(pickDataCenterLocationInFrankfurt).click();
+        driver.findElement(dataCenterLocation).click();
+        driver.findElement(dataCenterLocationInFrankfurt).click();
     }
 
     public void selectCommittedUsage() {
-        driver.findElement(pickCommittedUsage).click();
-        driver.findElement(pickOneYearUsage).click();
+        driver.findElement(committedUsage).click();
+        driver.findElement(oneYearUsage).click();
     }
 
     public void pushAddToEstimate() {
-        driver.findElement(pushAddToEstimateButton).click();
+        driver.findElement(addToEstimateButton).click();
     }
 
     public void checkTheMessageWithThePrice() {
@@ -119,23 +119,23 @@ public class CalculatorPage extends BasePage {
         driver.switchTo().window(tabs.get(1));
         driver.get("https://10minutemail.com/");
         String mailWindow = driver.getWindowHandle();
-        driver.findElement(copyAddress).click();//
+        driver.findElement(addressOfMail).click();//
         driver.switchTo().window(calculatorWindow);
-        WebElement element = driver.findElement(goToNewFirstFrame);
+        WebElement element = driver.findElement(newFirstFrame);
         driver.switchTo().frame(element);
         driver.switchTo().frame("myFrame");
-        String textFromCalculator = driver.findElement(getTextFromCalculator).getText();
-        driver.findElement(pushEmailEstimate).click();
-        driver.findElement(inputEmail).click();
+        String textFromCalculator = driver.findElement(costFromCalculator).getText();
+        driver.findElement(emailEstimate).click();
+        driver.findElement(email).click();
         Actions actionProvider = new Actions(driver);
         Action keyDown = actionProvider.keyDown(Keys.CONTROL).sendKeys("v").build();
         ((Action) keyDown).perform();
-        driver.findElement(sendEmail).click();
+        driver.findElement(emailSendingButton).click();
         driver.switchTo().window(mailWindow);
         WebElement loadOfButtonMail = (new WebDriverWait(driver, 10)).
-                until(ExpectedConditions.presenceOfElementLocated(pushButtonMail));
+                until(ExpectedConditions.presenceOfElementLocated(buttonMailPushing));
         loadOfButtonMail.click();
-        String textFromMail = driver.findElement(getTextFromMail).getText();
+        String textFromMail = driver.findElement(costFromMail).getText();
         Boolean overlap;
         if (textFromCalculator.contains(textFromMail)) {
             overlap = true;
